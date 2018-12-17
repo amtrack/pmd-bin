@@ -1,6 +1,6 @@
 # pmd-bin
 
-> Standalone PMD with its own JRE
+> Standalone [PMD](https://github.com/pmd/pmd) with its own JRE
 
 ## Installation
 
@@ -16,4 +16,4 @@ pmd -help
 
 ## Maintenance
 
-In order to update to a new upstream PMD version simply adjust the `pmd.version` field in `package.json`.
+In order to update to a new upstream [PMD](https://github.com/pmd/pmd/releases) version simply adjust the `pmd.version` field in `package.json`.
