@@ -1,0 +1,29 @@
+{
+  "name": "pmd-bin",
+  "version": "0.0.0-development",
+  "description": "Standalone PMD with its own JRE",
+  "author": "Matthias Rolke <mr.amtrack@gmail.com>",
+  "bin": {
+    "pmd": "./pmd"
+  },
+  "dependencies": {
+    "node-jre": "^0.2.3"
+  },
+  "files": [
+    "/dist",
+    "/pmd"
+  ],
+  "license": "BSD",
+  "main": "pmd",
+  "pmd": {
+    "version": "6.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IPfolioDev/pmd-bin.git"
+  },
+  "scripts": {
+    "prepare": "bash download-pmd.sh",
+    "test": "bash test.sh"
+  }
+}

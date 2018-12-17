@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+const path = require("path");
+const jre = require("node-jre");
+
+const classPath = [path.resolve(__dirname, "dist", "pmd-bin", "lib", "*")];
+const className = "net.sourceforge.pmd.PMD";
+const args = process.argv.splice(2);
+
+const result = jre.spawnSync(classPath, className, args, {
+  encoding: "utf8"
+});
+
+if (process.env.NPM_PMD_BIN_STDERR === "true") {
+  console.error(result.stderr.trim());
+}
+console.log(result.stdout.trim());
+process.exit(result.status);
