@@ -1,11 +1,11 @@
 # pmd-bin
 
-> Standalone [PMD](https://github.com/pmd/pmd) with its own JRE
+> Standalone [PMD](https://github.com/pmd/pmd) (static code analyzer) with its own JRE
 
 ## Installation
 
 ```console
-$ npm install git+https://github.com/IPfolioDev/pmd-bin.git
+$ npm install pmd-bin
 ```
 
 ## Usage
