@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "11"
+jobs:
+  include:
+    - stage: test
+      script:
+        - npm test
+    - stage: release
+      if: branch = master
+      script:
+        - npx semantic-release@15
