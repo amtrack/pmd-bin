@@ -5,7 +5,7 @@
 ## Installation
 
 ```console
-$ npm install pmd-bin
+npm install pmd-bin
 ```
 
 ## Usage
