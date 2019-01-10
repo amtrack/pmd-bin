@@ -8,11 +8,12 @@ const className = "net.sourceforge.pmd.PMD";
 const args = process.argv.splice(2);
 
 const result = jre.spawnSync(classPath, className, args, {
-  encoding: "utf8"
+  encoding: "utf8",
+  stdio: [
+    "inherit",
+    "inherit",
+    process.env.NPM_PMD_BIN_STDERR === "true" ? "inherit" : "ignore"
+  ]
 });
 
-if (process.env.NPM_PMD_BIN_STDERR === "true") {
-  console.error(result.stderr.trim());
-}
-console.log(result.stdout.trim());
-process.exit(result.status);
+process.exitCode = result.status;
