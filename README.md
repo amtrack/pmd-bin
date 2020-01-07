@@ -2,6 +2,8 @@
 
 > Standalone [PMD](https://github.com/pmd/pmd) (static code analyzer) with its own JRE
 
+[![Build Status](https://travis-ci.org/IPfolioDev/pmd-bin.svg?branch=master)](https://travis-ci.org/IPfolioDev/pmd-bin)
+
 ## Installation
 
 ```console
