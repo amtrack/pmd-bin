@@ -16,7 +16,7 @@
   "license": "BSD",
   "main": "pmd",
   "pmd": {
-    "version": "6.20.0"
+    "version": "6.21.0"
   },
   "repository": {
     "type": "git",
