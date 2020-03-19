@@ -1,5 +1,9 @@
 {
   "extends": [
     "config:base"
-  ]
+  ],
+  "rangeStrategy": "bump",
+  "node": {
+    "supportPolicy": ["current"]
+  }
 }
