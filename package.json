@@ -7,7 +7,7 @@
     "pmd": "./pmd"
   },
   "dependencies": {
-    "node-jre": "^0.2.3"
+    "node-java-connector": "^0.1.4"
   },
   "files": [
     "/dist",

@@ -1,19 +1,37 @@
 #!/usr/bin/env node
 
 const path = require("path");
-const jre = require("node-jre");
+const jre = require("node-java-connector");
 
-const classPath = [path.resolve(__dirname, "dist", "pmd-bin", "lib", "*")];
-const className = "net.sourceforge.pmd.PMD";
-const args = process.argv.splice(2);
+async function main() {
+  await jre.install(15);
 
-const result = jre.spawnSync(classPath, className, args, {
-  encoding: "utf8",
-  stdio: [
-    "inherit",
-    "inherit",
-    process.env.NPM_PMD_BIN_STDERR === "true" ? "inherit" : "ignore"
-  ]
-});
+  const className = "net.sourceforge.pmd.PMD";
+  const classPath = [path.resolve(__dirname, "dist", "pmd-bin", "lib", "*")];
+  const args = process.argv.splice(2);
 
-process.exitCode = result.status;
+  const proc = await jre.executeClassWithCP(className, classPath, args);
+
+  // redirect stderr & stdout rather than capturing
+  proc.stdout.removeAllListeners("data");
+  proc.stderr.removeAllListeners("data");
+  proc.stdout.pipe(process.stdout);
+  if (process.env.NPM_PMD_BIN_STDERR === "true") {
+    proc.stderr.pipe(process.stderr);
+  }
+
+  return await new Promise(function (resolve, reject) {
+    proc.on("exit", (exitCode) => {
+      resolve(exitCode);
+    });
+  });
+}
+
+main()
+  .then((result) => {
+    process.exit(result);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(-1);
+  });
