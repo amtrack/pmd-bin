@@ -7,8 +7,5 @@
   "rangeStrategy": "bump",
   "node": {
     "supportPolicy": ["current"]
-  },
-  "travis": {
-    "enabled": true
   }
 }
