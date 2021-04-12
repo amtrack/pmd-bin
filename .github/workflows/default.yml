@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  default:
+  with-java-installed:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,6 +22,36 @@ jobs:
         run: npm ci
       - name: Run tests
         run: npm run test
+  without-java-installed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: remove java
+        run: |
+          sudo rm -f "$(which java)" "$(which javac)"
+          unset JAVA_HOME
+          java --version || true
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm run test
+  release:
+    needs: [with-java-installed, without-java-installed]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: npm ci
       - name: Release package
         run: npx semantic-release
         env:
