@@ -1,10 +1,10 @@
 async function installJava() {
   const jre = require("node-java-connector");
   return jre
-    .install(15, { type: "jre" })
+    .install(15, { type: "jre", allow_system_java: false })
     .then((dir) => {
       if (!dir) {
-        console.log('using existing java installation');
+        console.log("using system-wide java installation");
       }
     })
     .catch((err) => {

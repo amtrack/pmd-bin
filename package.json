@@ -9,7 +9,7 @@
   "dependencies": {
     "adm-zip": "^0.5.5",
     "got": "^11.8.2",
-    "node-java-connector": "^0.1.5"
+    "node-java-connector": "^0.2.0"
   },
   "files": [
     "/dist",
