@@ -7,6 +7,8 @@
     "pmd": "./pmd"
   },
   "dependencies": {
+    "adm-zip": "^0.5.5",
+    "got": "^11.8.2",
     "node-java-connector": "^0.1.5"
   },
   "files": [
@@ -23,7 +25,7 @@
     "url": "https://github.com/IPfolioDev/pmd-bin.git"
   },
   "scripts": {
-    "prepare": "bash download-pmd.sh",
+    "install": "node install.js",
     "test": "bash test.sh"
   }
 }

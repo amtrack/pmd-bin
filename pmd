@@ -4,10 +4,11 @@ const path = require("path");
 const jre = require("node-java-connector");
 
 async function main() {
-  await jre.install(15);
-
+  const pmdVer = require("./package.json").pmd.version;
   const className = "net.sourceforge.pmd.PMD";
-  const classPath = [path.resolve(__dirname, "dist", "pmd-bin", "lib", "*")];
+  const classPath = [
+    path.resolve(__dirname, "dist", `pmd-bin-${pmdVer}`, "lib", "*"),
+  ];
   const args = process.argv.splice(2);
 
   const proc = await jre.executeClassWithCP(className, classPath, args);
