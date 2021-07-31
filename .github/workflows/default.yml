@@ -19,7 +19,9 @@ jobs:
         with:
           node-version: 14
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npm run prepublishOnly
       - name: Run tests
         run: npm run test
   without-java-installed:
@@ -37,7 +39,9 @@ jobs:
           unset JAVA_HOME
           java --version || true
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npm run prepublishOnly
       - name: Run tests
         run: npm run test
   release:
