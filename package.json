@@ -28,8 +28,8 @@
     "url": "https://github.com/IPfolioDev/pmd-bin.git"
   },
   "scripts": {
-    "prepublishOnly": "node prepare.js",
-    "install": "node install.js",
-    "test": "bash test.sh"
+    "install": "node download-java.js",
+    "build": "node download-pmd.js",
+    "prepare": "npm run build"
   }
 }
