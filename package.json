@@ -16,7 +16,7 @@
   "files": [
     "/dist",
     "/pmd",
-    "/install.js"
+    "/download-java.js"
   ],
   "license": "BSD",
   "main": "pmd",
