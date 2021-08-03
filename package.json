@@ -16,7 +16,7 @@
   "files": [
     "/dist",
     "/pmd",
-    "/install.js"
+    "/download-java.js"
   ],
   "license": "BSD",
   "main": "pmd",
@@ -30,6 +30,7 @@
   "scripts": {
     "install": "node download-java.js",
     "build": "node download-pmd.js",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "test": "PATH=\"${PATH}:${PWD}\" bash test.sh"
   }
 }
