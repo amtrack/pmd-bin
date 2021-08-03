@@ -1,3 +1,8 @@
+async function cleanDist() {
+  const fs = require('fs/promises');
+  return fs.rm("dist", { recursive: true, force: true });
+}
+
 async function downloadPmd() {
   const pmdVer = require("./package.json").pmd.version;
   const url = `https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmdVer}/pmd-bin-${pmdVer}.zip`;
@@ -23,7 +28,7 @@ async function movePmd() {
 }
 
 async function installPmd() {
-  return downloadPmd().then(extractPmd).then(movePmd);
+  return cleanDist().then(downloadPmd).then(extractPmd).then(movePmd);
 }
 
 async function main() {
