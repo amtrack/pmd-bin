@@ -7,7 +7,7 @@ set -eo errexit
 ret=0;
 
 echo -n "it should succeed linting valid apex code... "
-if ! ./pmd -dir ./fixtures/valid -rulesets apex-style -language apex > /dev/null; then
+if ! pmd -dir ./fixtures/valid -rulesets apex-style -language apex > /dev/null; then
     echo "failed"
     ret=1;
 else 
@@ -15,7 +15,7 @@ else
 fi
 
 echo -n "it should fail linting invalid apex code... "
-if ./pmd -dir ./fixtures/invalid -rulesets apex-style -language apex > /dev/null; then
+if pmd -dir ./fixtures/invalid -rulesets apex-style -language apex > /dev/null; then
     echo "failed"
     ret=1;
 else 

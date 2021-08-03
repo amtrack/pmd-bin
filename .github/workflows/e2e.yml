@@ -1,0 +1,26 @@
+name: Test released package
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  without-java-installed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: remove java
+        run: |
+          sudo rm -f "$(which java)" "$(which javac)"
+          unset JAVA_HOME
+          java --version || true
+      - name: Install pmd-bin
+        run: npm install --global pmd-bin@${GITHUB_REF#"refs/tags/v"}
+      - name: Run tests
+        run: bash test.sh
