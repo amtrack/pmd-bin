@@ -2,8 +2,10 @@ name: Test released package
 
 on:
   push:
+    branches:
+      - "!*"
     tags:
-      - '*'
+      - "v*"
 
 jobs:
   without-java-installed:
