@@ -2,8 +2,6 @@ name: Test released package
 
 on:
   push:
-    branches:
-      - "!*"
     tags:
       - "v*"
 
