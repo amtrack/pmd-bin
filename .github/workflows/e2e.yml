@@ -6,7 +6,7 @@ on:
       - "v*"
 
 jobs:
-  without-java-installed:
+  e2e:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
