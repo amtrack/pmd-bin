@@ -1,8 +1,7 @@
 {
   "extends": [
     "config:base",
-    ":semanticCommits",
-    ":semanticCommitTypeAll(chore)"
+    ":semanticCommits"
   ],
   "rangeStrategy": "bump",
   "node": {
