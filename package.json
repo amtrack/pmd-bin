@@ -7,7 +7,7 @@
     "pmd": "./pmd"
   },
   "dependencies": {
-    "node-java-connector": "^1.0.1"
+    "node-java-connector": "1.1.1"
   },
   "devDependencies": {
     "adm-zip": "^0.5.9",
