@@ -12,7 +12,7 @@ jobs:
   with-java-installed:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v2
@@ -25,7 +25,7 @@ jobs:
   without-java-installed:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v2
@@ -44,7 +44,7 @@ jobs:
     needs: [with-java-installed, without-java-installed]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - uses: actions/setup-node@v2
