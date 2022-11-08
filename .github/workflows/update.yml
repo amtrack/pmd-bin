@@ -3,7 +3,7 @@ name: Update PMD version
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *" # every hour
+    - cron: "0 9 * * *" # daily at 9 am
 
 jobs:
   default:
