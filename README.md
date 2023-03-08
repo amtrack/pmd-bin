@@ -7,7 +7,7 @@
 ## Installation
 
 ```console
-npm install pmd-bin
+npm install --global pmd-bin
 ```
 
 ## Usage
