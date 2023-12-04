@@ -9,19 +9,6 @@ on:
       - master
 
 jobs:
-  with-java-installed:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-      - name: Install dependencies
-        run: npm ci
-      - name: Run tests
-        run: npm run test
   without-java-installed:
     runs-on: ubuntu-latest
     steps:
@@ -34,14 +21,51 @@ jobs:
       - name: remove java
         run: |
           sudo rm -f "$(which java)" "$(which javac)"
+          java --version || true
+      - name: Install dependencies
+        run: |
           unset JAVA_HOME
+          npm ci
+      - name: Run tests
+        run: npm run test
+  with-java-installed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+      - name: print java setup
+        run: |
+          echo "JAVA_HOME: $JAVA_HOME"
           java --version || true
       - name: Install dependencies
         run: npm ci
       - name: Run tests
         run: npm run test
+  with-java-installed-skip-java-download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+      - name: print java setup
+        run: |
+          echo "JAVA_HOME: $JAVA_HOME"
+          java --version || true
+      - name: Install dependencies
+        run: |
+          export PMD_BIN_SKIP_JAVA_DOWNLOAD=true
+          npm ci
+      - name: Run tests
+        run: npm run test
   release:
-    needs: [with-java-installed, without-java-installed]
+    needs: [without-java-installed, with-java-installed, with-java-installed-skip-java-download]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

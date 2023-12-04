@@ -18,9 +18,10 @@ jobs:
       - name: remove java
         run: |
           sudo rm -f "$(which java)" "$(which javac)"
-          unset JAVA_HOME
           java --version || true
       - name: Install pmd-bin
-        run: npm install --global pmd-bin@${GITHUB_REF#"refs/tags/v"}
+        run: |
+          unset JAVA_HOME
+          npm install --global pmd-bin@${GITHUB_REF#"refs/tags/v"}
       - name: Run tests
         run: bash test.sh
