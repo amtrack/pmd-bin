@@ -18,6 +18,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
+      - name: print java setup
+        run: |
+          echo "JAVA_HOME: $JAVA_HOME"
+          java --version || true
       - name: Install dependencies
         run: npm ci
       - name: Run tests
@@ -34,10 +38,11 @@ jobs:
       - name: remove java
         run: |
           sudo rm -f "$(which java)" "$(which javac)"
-          unset JAVA_HOME
           java --version || true
       - name: Install dependencies
-        run: npm ci
+        run: |
+          unset JAVA_HOME
+          npm ci
       - name: Run tests
         run: npm run test
   release:
