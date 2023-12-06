@@ -14,7 +14,11 @@ async function installJava() {
 }
 
 async function main() {
-  await installJava();
+  if (process.env["PMD_BIN_SKIP_JAVA_DOWNLOAD"] === "true") {
+    console.log("skipped downloading Java");
+  } else {
+    await installJava();
+  }
 }
 
 main();
