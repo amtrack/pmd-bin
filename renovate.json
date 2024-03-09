@@ -2,9 +2,5 @@
   "extends": [
     "config:base",
     ":semanticCommits"
-  ],
-  "rangeStrategy": "bump",
-  "node": {
-    "supportPolicy": ["current"]
-  }
+  ]
 }
