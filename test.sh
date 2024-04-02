@@ -7,18 +7,18 @@ set -eo errexit
 ret=0;
 
 echo -n "it should succeed linting valid apex code... "
-if ! pmd -dir ./fixtures/valid -rulesets apex-style -language apex > /dev/null; then
+if ! pmd check --dir ./fixtures/valid --use-version apex-55 --rulesets rulesets/apex/quickstart.xml > /dev/null; then
     echo "failed"
     ret=1;
-else 
+else
     echo "OK"
 fi
 
 echo -n "it should fail linting invalid apex code... "
-if pmd -dir ./fixtures/invalid -rulesets apex-style -language apex > /dev/null; then
+if pmd check --dir ./fixtures/invalid --use-version apex-55 --rulesets rulesets/apex/quickstart.xml > /dev/null; then
     echo "failed"
     ret=1;
-else 
+else
     echo "OK"
 fi
 
