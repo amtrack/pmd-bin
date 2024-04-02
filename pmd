@@ -4,7 +4,7 @@ const path = require("path");
 const jre = require("node-java-connector");
 
 async function main() {
-  const className = "net.sourceforge.pmd.PMD";
+  const className = "net.sourceforge.pmd.cli.PmdCli";
   const classPath = [
     path.resolve(__dirname, "dist", "pmd-bin", "lib", "*"),
   ];
