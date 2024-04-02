@@ -13,7 +13,7 @@ npm install --global pmd-bin
 ## Usage
 
 ```console
-pmd -help
+pmd --help
 ```
 
 ## Maintenance
