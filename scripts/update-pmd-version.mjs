@@ -21,16 +21,8 @@ async function getLatestPmdVersion() {
   );
   const releaseTags = await response.json();
 
-  const versions = releaseTags
-    .map((releaseTag) => releaseTag.ref.split("/").at(-1))
-    // it already seems to be sorted but just in case
-    .sort(compareSemanticVersions);
+  const versions = releaseTags.map((releaseTag) =>
+    releaseTag.ref.split("/").at(-1)
+  );
   return versions.at(-1);
-}
-
-function compareSemanticVersions(a, b) {
-  return a.localeCompare(b, undefined, {
-    numeric: true,
-    sensitivity: "base",
-  });
 }
