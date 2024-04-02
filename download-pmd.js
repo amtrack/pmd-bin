@@ -5,7 +5,7 @@ async function cleanDist() {
 
 async function downloadPmd() {
   const pmdVer = require("./package.json").pmd.version;
-  const url = `https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmdVer}/pmd-bin-${pmdVer}.zip`;
+  const url = `https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmdVer}/pmd-dist-${pmdVer}-bin.zip`;
   const response = await fetch(url);
   return Buffer.from(await response.arrayBuffer(), "binary");
 }
