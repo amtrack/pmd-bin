@@ -1,6 +1,7 @@
 name: Test released package
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - "v*"
