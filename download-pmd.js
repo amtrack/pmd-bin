@@ -14,7 +14,7 @@ async function extractPmd(buffer) {
   const Zip = require("adm-zip");
 
   const pmdZip = new Zip(buffer);
-  pmdZip.extractAllTo("dist", true);
+  pmdZip.extractAllTo("dist", true, true);
 }
 
 async function movePmd() {
