@@ -20,7 +20,7 @@
   "license": "BSD",
   "main": "pmd",
   "pmd": {
-    "version": "7.9.0"
+    "version": "7.10.0"
   },
   "repository": {
     "type": "git",
