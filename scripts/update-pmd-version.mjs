@@ -24,5 +24,10 @@ async function getLatestPmdVersion() {
   const versions = releaseTags.map((releaseTag) =>
     releaseTag.ref.split("/").at(-1)
   );
-  return versions.at(-1);
+  return versions
+    .filter((version) => {
+      // no -rc1, -SNAPSHOT, etc.
+      return !version.includes("-");
+    })
+    .at(-1);
 }
