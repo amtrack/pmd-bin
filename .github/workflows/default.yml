@@ -72,7 +72,13 @@ jobs:
         run: npm run test
   release:
     needs: [without-java-installed, with-java-installed, with-java-installed-skip-java-download]
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     steps:
       - uses: actions/checkout@v5
         with:
@@ -83,7 +89,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Release package
-        run: npx semantic-release -b main
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -2,9 +2,23 @@
   "name": "pmd-bin",
   "version": "0.0.0-development",
   "description": "Standalone PMD (static code analyzer) with its own JRE",
+  "repository": "amtrack/pmd-bin",
+  "license": "BSD",
   "author": "Matthias Rolke <mr.amtrack@gmail.com>",
+  "main": "pmd",
   "bin": {
     "pmd": "./pmd"
+  },
+  "files": [
+    "/dist",
+    "/pmd",
+    "/download-java.js"
+  ],
+  "scripts": {
+    "build": "node download-pmd.js",
+    "install": "node download-java.js",
+    "prepare": "npm run build",
+    "test": "PATH=\"${PATH}:${PWD}\" bash test.sh"
   },
   "dependencies": {
     "node-java-connector": "1.1.1"
@@ -12,24 +26,10 @@
   "devDependencies": {
     "adm-zip": "^0.5.16"
   },
-  "files": [
-    "/dist",
-    "/pmd",
-    "/download-java.js"
-  ],
-  "license": "BSD",
-  "main": "pmd",
+  "publishConfig": {
+    "provenance": true
+  },
   "pmd": {
     "version": "7.17.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/amtrack/pmd-bin.git"
-  },
-  "scripts": {
-    "install": "node download-java.js",
-    "build": "node download-pmd.js",
-    "prepare": "npm run build",
-    "test": "PATH=\"${PATH}:${PWD}\" bash test.sh"
   }
 }
