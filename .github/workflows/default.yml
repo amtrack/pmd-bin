@@ -19,8 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v5
         with:
           node-version-file: .node-version
@@ -31,15 +29,13 @@ jobs:
       - name: Install dependencies
         run: |
           unset JAVA_HOME
-          npm ci
+          npm ci --ignore-scripts
       - name: Run tests
         run: npm run test
   with-java-installed:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v5
         with:
           node-version-file: .node-version
@@ -48,15 +44,13 @@ jobs:
           echo "JAVA_HOME: $JAVA_HOME"
           java --version || true
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
       - name: Run tests
         run: npm run test
   with-java-installed-skip-java-download:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v5
         with:
           node-version-file: .node-version
@@ -67,7 +61,7 @@ jobs:
       - name: Install dependencies
         run: |
           export PMD_BIN_SKIP_JAVA_DOWNLOAD=true
-          npm ci
+          npm ci --ignore-scripts
       - name: Run tests
         run: npm run test
   release:
@@ -81,15 +75,14 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v5
         with:
           node-version-file: .node-version
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
       - name: Release package
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          npm_config_ignore_scripts: true
