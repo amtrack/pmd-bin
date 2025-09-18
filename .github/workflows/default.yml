@@ -31,6 +31,7 @@ jobs:
           unset JAVA_HOME
           npm ci --ignore-scripts
           npm run install
+          npm run build
       - name: Run tests
         run: npm run test
   with-java-installed:
@@ -48,6 +49,7 @@ jobs:
         run: |
           npm ci --ignore-scripts
           npm run install
+          npm run build
       - name: Run tests
         run: npm run test
   with-java-installed-skip-java-download:
@@ -66,6 +68,7 @@ jobs:
           export PMD_BIN_SKIP_JAVA_DOWNLOAD=true
           npm ci --ignore-scripts
           npm run install
+          npm run build
       - name: Run tests
         run: npm run test
   release:
@@ -86,6 +89,7 @@ jobs:
         run: |
           npm ci --ignore-scripts
           npm run install
+          npm run build
       - name: Release package
         run: npx semantic-release
         env:
