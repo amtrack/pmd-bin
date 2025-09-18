@@ -24,7 +24,7 @@
     "node-java-connector": "1.1.1"
   },
   "devDependencies": {
-    "adm-zip": "^0.5.16"
+    "adm-zip": "0.5.16"
   },
   "publishConfig": {
     "provenance": true
