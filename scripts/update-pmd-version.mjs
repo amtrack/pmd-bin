@@ -20,14 +20,23 @@ async function getLatestPmdVersion() {
     "https://api.github.com/repos/pmd/pmd/git/matching-refs/tags/pmd_releases"
   );
   const releaseTags = await response.json();
-
-  const versions = releaseTags.map((releaseTag) =>
-    releaseTag.ref.split("/").at(-1)
-  );
-  return versions
+  const versions = releaseTags
+    .map((releaseTag) => releaseTag.ref.split("/").at(-1))
     .filter((version) => {
       // no -rc1, -SNAPSHOT, etc.
       return !version.includes("-");
-    })
-    .at(-1);
+    });
+  return getHighestVersion(versions);
+}
+
+function getHighestVersion(versions) {
+  return versions.reduce((max, current) => {
+    const maxParts = max.split(".").map(Number);
+    const currentParts = current.split(".").map(Number);
+    for (let i = 0; i < 3; i++) {
+      if (currentParts[i] > maxParts[i]) return current;
+      if (currentParts[i] < maxParts[i]) return max;
+    }
+    return max;
+  });
 }
