@@ -26,9 +26,6 @@
   "devDependencies": {
     "adm-zip": "0.5.16"
   },
-  "publishConfig": {
-    "provenance": true
-  },
   "pmd": {
     "version": "7.17.0"
   }
