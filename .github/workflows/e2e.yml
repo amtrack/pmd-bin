@@ -21,6 +21,9 @@ jobs:
       - name: Install pmd-bin
         run: |
           unset JAVA_HOME
-          npm install --global pmd-bin@${GITHUB_REF#"refs/tags/v"}
+          npm install --global pmd-bin@latest
+          npm ls --global
       - name: Run tests
-        run: bash test.sh
+        run: |
+          bash test.sh
+          pmd --version
