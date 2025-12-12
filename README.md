@@ -18,4 +18,4 @@ pmd --help
 
 ## Maintenance
 
-In order to update to a new upstream [PMD](https://github.com/pmd/pmd/releases) version simply adjust the `pmd.version` field in `package.json`.
+In order to update to a new upstream [PMD](https://github.com/pmd/pmd/releases) version simply adjust the `pmdVersion` field in `package.json`.

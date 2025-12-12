@@ -8,11 +8,6 @@ on:
   pull_request:
     branches:
       - main
-  workflow_run:
-    workflows:
-      - Update PMD version
-    types:
-      - completed
 
 jobs:
   without-java-installed:

@@ -1,11 +1,11 @@
 async function cleanDist() {
-  const fs = require('fs/promises');
+  const fs = require("fs/promises");
   return fs.rm("dist", { recursive: true, force: true });
 }
 
 async function downloadPmd() {
-  const pmdVer = require("./package.json").pmd.version;
-  const url = `https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmdVer}/pmd-dist-${pmdVer}-bin.zip`;
+  const pmdVersion = require("./package.json").pmdVersion;
+  const url = `https://github.com/pmd/pmd/releases/download/pmd_releases%2F${pmdVersion}/pmd-dist-${pmdVersion}-bin.zip`;
   const response = await fetch(url);
   return Buffer.from(await response.arrayBuffer(), "binary");
 }
@@ -18,10 +18,10 @@ async function extractPmd(buffer) {
 }
 
 async function movePmd() {
-  const pmdVer = require("./package.json").pmd.version;
+  const pmdVersion = require("./package.json").pmdVersion;
   const fs = require("fs/promises");
 
-  return fs.rename(`dist/pmd-bin-${pmdVer}`, "dist/pmd-bin");
+  return fs.rename(`dist/pmd-bin-${pmdVersion}`, "dist/pmd-bin");
 }
 
 async function installPmd() {

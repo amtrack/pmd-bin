@@ -1,6 +1,15 @@
 {
-  "extends": [
-    "config:recommended",
-    ":semanticCommits"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommits"],
+  "customManagers": [
+    {
+      "description": "pmd version as custom property in package.json",
+      "customType": "regex",
+      "managerFilePatterns": ["/^package\\.json$/"],
+      "matchStrings": ["\"pmdVersion\": \"(?<currentValue>\\S+)\""],
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "pmd/pmd",
+      "extractVersionTemplate": "pmd_releases/(?<version>.+)"
+    }
   ]
 }
