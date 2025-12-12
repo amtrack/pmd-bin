@@ -11,5 +11,11 @@
       "depNameTemplate": "pmd/pmd",
       "extractVersionTemplate": "pmd_releases/(?<version>.+)"
     }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["pmd/pmd"],
+      "semanticCommitType": "feat"
+    }
   ]
 }
