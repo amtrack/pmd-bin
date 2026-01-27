@@ -2,12 +2,15 @@
   "name": "pmd-bin",
   "version": "0.0.0-development",
   "description": "Standalone PMD (static code analyzer) with its own JRE",
-  "repository": "amtrack/pmd-bin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amtrack/pmd-bin.git"
+  },
   "license": "BSD",
   "author": "Matthias Rolke <mr.amtrack@gmail.com>",
   "main": "pmd",
   "bin": {
-    "pmd": "./pmd"
+    "pmd": "pmd"
   },
   "files": [
     "/dist",
