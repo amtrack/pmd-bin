@@ -24,7 +24,7 @@
     "test": "PATH=\"${PATH}:${PWD}\" bash test.sh"
   },
   "dependencies": {
-    "node-java-connector": "1.1.1"
+    "node-java-connector": "1.1.2"
   },
   "devDependencies": {
     "adm-zip": "0.6.0"
