@@ -29,5 +29,5 @@
   "devDependencies": {
     "adm-zip": "0.6.0"
   },
-  "pmdVersion": "7.26.0"
+  "pmdVersion": "7.28.0"
 }
