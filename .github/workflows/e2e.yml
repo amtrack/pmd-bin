@@ -2,6 +2,10 @@ name: Test released package
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: pmd-bin version to test
+        default: latest
   push:
     tags:
       - "v*"
@@ -19,9 +23,11 @@ jobs:
           sudo rm -f "$(which java)" "$(which javac)"
           java --version || true
       - name: Install pmd-bin
+        env:
+          VERSION: ${{ inputs.version || 'latest' }}
         run: |
           unset JAVA_HOME
-          npm install --global pmd-bin@latest
+          npm install --global "pmd-bin@$VERSION"
           npm ls --global
       - name: Run tests
         run: |
