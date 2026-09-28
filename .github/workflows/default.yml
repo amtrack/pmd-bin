@@ -5,9 +5,11 @@ on:
   push:
     branches:
       - main
+      - next
   pull_request:
     branches:
       - main
+      - next
 
 jobs:
   without-java-installed:
@@ -68,7 +70,7 @@ jobs:
         run: npm run test
   release:
     needs: [without-java-installed, with-java-installed, with-java-installed-skip-java-download]
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/next' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
