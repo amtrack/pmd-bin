@@ -1,35 +1,22 @@
 #!/usr/bin/env node
 
-const path = require("path");
-const jre = require("node-java-connector");
+const { JavaCaller } = require("java-caller");
 
-async function main() {
-  const className = "net.sourceforge.pmd.cli.PmdCli";
-  const classPath = [
-    path.resolve(__dirname, "dist", "pmd-bin", "lib", "*"),
-  ];
-  const args = process.argv.splice(2);
+// java-caller moves args starting with -D/-X to the JVM; PMD's -D means --debug
+const args = process.argv.slice(2).map((arg) => (arg === "-D" ? "--debug" : arg));
 
-  const proc = await jre.executeClassWithCP(className, classPath, args);
-
-  // redirect stderr & stdout rather than capturing
-  proc.stdout.removeAllListeners("data");
-  proc.stderr.removeAllListeners("data");
-  proc.stdout.pipe(process.stdout);
-  if (process.env.NPM_PMD_BIN_STDERR === "true") {
-    proc.stderr.pipe(process.stderr);
-  }
-
-  return await new Promise(function (resolve, reject) {
-    proc.on("exit", (exitCode) => {
-      resolve(exitCode);
-    });
-  });
-}
-
-main()
-  .then((result) => {
-    process.exit(result);
+new JavaCaller({
+  rootPath: __dirname,
+  classPath: "dist/pmd-bin/lib/*",
+  mainClass: "net.sourceforge.pmd.cli.PmdCli",
+  minimumJavaVersion: 17,
+  javaType: "jre",
+})
+  .run(args)
+  .then(({ status, stdout, stderr }) => {
+    process.stdout.write(stdout);
+    if (process.env.NPM_PMD_BIN_STDERR === "true") process.stderr.write(stderr);
+    process.exit(status);
   })
   .catch((err) => {
     console.error(err);
